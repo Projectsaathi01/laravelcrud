@@ -12,6 +12,10 @@ class AccountController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function inv()
+    {
+        return view('inventory.purchase');
+    }
     public function index()
     {
         // $fname = "Ravi";
@@ -43,13 +47,21 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'fname'=> 'required|min:10|max:20',
+            'lname'=> 'required',
+            'username'=> 'required',
+            'confirmpass'=> 'required'
+        ]);
+
         $account = new Account;
         $account->first_name = $request->fname;
         $account->last_name = $request->lname;
         $account->username = $request->username;
         $account->password = $request->confirmpass;
         $account->save();
-        return redirect()->route('account.index');
+        // \Session::flash('flash_message','successfully saved.');
+        return redirect()->route('account.index')->with('success', 'You have successfully Created!');;
     }
 
     /**

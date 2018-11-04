@@ -35,4 +35,31 @@
 		</form>
 	</div>
 
+@if(isset($success) || Session::has('success') )
+	<div class="alert alert-success alert-dismissable">
+		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+		<strong>Success!</strong> {{ isset($success) ? $info : Session::get('success') }}
+	</div>
+@endif
+
+
+@if ($errors->any())
+
+<div class="alert alert-danger">
+
+	<ul>
+
+		@foreach ($errors->all() as $error)
+
+			<li>{{ $error }}</li>
+
+		@endforeach
+
+	</ul>
+
+</div>
+
+@endif
+
 @endsection
+

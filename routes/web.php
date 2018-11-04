@@ -24,3 +24,19 @@ Route::get('/', 'LoginController@index');
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
+Route::get('h', function(){
+	return view('inventory.purchase');
+});
+
+Route::get('inventory', function(){
+	return view('inventory.purchase');
+});
+
+Route::get('stock', 'AccountController@inv');
+
+
+// RMS Route
+Route::get('inventory/purchase', 'InventoryController@index');
+
+Route::get('billing', 'BillingController@index');
